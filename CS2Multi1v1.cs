@@ -61,8 +61,7 @@ public class CS2Multi1v1 : BasePlugin
     {
         Server.NextFrame(() =>
         {
-            SharpTimerDebug("OnMapStart:");
-            SharpTimerDebug("Executing 1v1");
+            Console.WriteLine($"[1v1 Debug] OnMapStart");
             Server.ExecuteCommand($"execifexists 1v1.cfg");
         });
     }
