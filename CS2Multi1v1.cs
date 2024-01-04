@@ -360,7 +360,7 @@ public class CS2Multi1v1 : BasePlugin
 
     public void SetupArenasIfNeeded()
     {
-        if (Server.MapName == "aim_redline_fp" && !_aimMapLoaded)
+        if (!_aimMapLoaded)
         {
             List<Tuple<SpawnPoint, SpawnPoint>> arenasSpawns = getArenasSpawns();
             _rankedArenas.Clear();
