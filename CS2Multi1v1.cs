@@ -47,12 +47,24 @@ public class CS2Multi1v1 : BasePlugin
         RegisterEventHandler<EventPlayerDeath>(OnPlayerDeath);
         RegisterEventHandler<EventPlayerSpawn>(OnPlayerSpawn);
         RegisterEventHandler<EventPlayerDisconnect>(OnPlayerDisconnect);
-
+        
+        RegisterListener<Listeners.OnMapStart>(OnMapStartHandler);
+        
         if (hotReload)
         {
             _logger.LogInformation("Detected hot reload...");
             // requeue/calc spawns??
         }
+    }
+
+    private void OnMapStartHandler(string mapName)
+    {
+        Server.NextFrame(() =>
+        {
+            SharpTimerDebug("OnMapStart:");
+            SharpTimerDebug("Executing 1v1");
+            Server.ExecuteCommand($"execifexists 1v1.cfg");
+        });
     }
 
     // ----------------------------- SERVER RELATED GAME EVENT HOOKS -------------------------------------//
