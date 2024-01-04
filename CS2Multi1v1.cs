@@ -86,9 +86,9 @@ public class CS2Multi1v1 : BasePlugin
         ArenaPlayer arenaPlayer = new ArenaPlayer(playerController);
         _waitingArenaPlayers.Enqueue(arenaPlayer);
         _logger.LogInformation($"Player {arenaPlayer.PlayerController.PlayerName} added to waiting queue.");
-        arenaPlayer.PrintToChat($"{ChatColors.Gold}You have been added to the waiting queue.");
-        arenaPlayer.PrintToChat($"{ChatColors.Gold}Type {ChatColors.LightRed}!help{ChatColors.Gold} in chat to see info.");
-        arenaPlayer.PrintToChat($"Please message {ChatColors.LightRed}@easy.rs{ChatColors.Gold} on Discord with any feedback.");
+        arenaPlayer.PrintToChat($"{ChatColors.Gold}你被移动到了等待队列.");
+        arenaPlayer.PrintToChat($"{ChatColors.Gold}聊天栏输入 {ChatColors.LightRed}!help{ChatColors.Gold} 查看信息.");
+        arenaPlayer.PrintToChat($"{ChatColors.LightRed}官网{ChatColors.Gold} himeneko.cn");
 
         return HookResult.Continue;
     }
@@ -250,16 +250,16 @@ public class CS2Multi1v1 : BasePlugin
     [CommandHelper(minArgs: 0, usage: "", whoCanExecute: CommandUsage.CLIENT_ONLY)]
     public void OnHelp(CCSPlayerController player, CommandInfo commandInfo)
     {
-        PrintToChatCustom(player, "----------------- CS2 Multi 1v1 ----------");
-        PrintToChatCustom(player, "1. You will begin in the bottom arena.");
-        PrintToChatCustom(player, "2. A win promotes you an arena.");
-        PrintToChatCustom(player, "3. A loss demotes you an arena.");
-        PrintToChatCustom(player, "4. Whoever has the most kills at the end of the round wins.");
-        PrintToChatCustom(player, "5. Whoever got the last kill wins in the event of a tie.");
-        PrintToChatCustom(player, "--- Round types are random.");
-        PrintToChatCustom(player, "--- Challenging players is not supported yet.");
-        PrintToChatCustom(player, "--- Selecting guns is not supported yet.");
-        PrintToChatCustom(player, $"--- Please message {ChatColors.LightRed}@easy.rs{ChatColors.Default} on Discord with any feedback or bugs.");
+        PrintToChatCustom(player, "----------------- CS2 多人 1v1 ----------");
+        PrintToChatCustom(player, "1. 你将从最低阶级竞技场开始.");
+        PrintToChatCustom(player, "2. 胜利会让你晋升与更高阶玩家对战.");
+        PrintToChatCustom(player, "3. 失败会使你降级和更低阶玩家对战.");
+        PrintToChatCustom(player, "4. 谁获得最多的击杀，谁就是本场比赛的最强者.");
+        PrintToChatCustom(player, "5. 如果打成平手，谁最后一击获胜.");
+        PrintToChatCustom(player, "--- 对局类型完全随机.");
+        PrintToChatCustom(player, "--- 尚不支持挑战某一个玩家.");
+        PrintToChatCustom(player, "--- 目前也还未支持选择枪械.");
+        PrintToChatCustom(player, $"--- 插件还处于开发状态，请等待更新.");
     }
 
     // Show current players in waiting queue
@@ -270,7 +270,7 @@ public class CS2Multi1v1 : BasePlugin
     {
         if(player == null || !player.IsValid) return;
 
-        player.PrintToChat("Current Queue: ");
+        player.PrintToChat("当前队列: ");
         foreach(ArenaPlayer p in _waitingArenaPlayers)
         {
             player.PrintToChat(p.PlayerController.PlayerName);
@@ -332,7 +332,7 @@ public class CS2Multi1v1 : BasePlugin
 
         if (player != null && player.IsValid)
         {
-            player.PrintToChat($"Successfully instantiated {_rankedArenas.Count} arenas.");
+            player.PrintToChat($"已成功实例化 {_rankedArenas.Count} 竞技场.");
         }
     }
 
@@ -422,6 +422,6 @@ public class CS2Multi1v1 : BasePlugin
 
     public void PrintToChatCustom(CCSPlayerController playerController, string text)
     {
-        playerController.PrintToChat($" {ChatColors.Olive}  CS2Multi1v1 \u2022 {ChatColors.Default}{text}");
+        playerController.PrintToChat($" {ChatColors.Olive}  HIME | {ChatColors.Default}{text}");
     }
 }
