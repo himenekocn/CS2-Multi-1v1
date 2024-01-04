@@ -1,0 +1,42 @@
+name: Build
+
+on:
+  push:
+    branches: [ "main" ]
+    paths-ignore:
+      - '**/README.md'
+      - '**/.gitignore'
+      - '**/LICENSE'
+  pull_request:
+    branches: [ "main" ]
+    paths-ignore:
+      - '**/README.md'
+      - '**/.gitignore'
+      - '**/LICENSE'
+
+env:
+  BUILD_NUMBER: ${{ github.run_number }}
+  PROJECT_PATH: "CS2Multi1v1.csproj"
+  PROJECT_NAME: "CS2Multi1v1"
+  OUTPUT_PATH: "./CS2Multi1v1"
+
+jobs:
+  build:
+    permissions: write-all
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.0.x
+    - name: Restore
+      run: dotnet restore
+    - name: Build
+      run: dotnet build ${{ env.PROJECT_PATH }} -c NoBlock -o ${{ env.OUTPUT_PATH }}
+    - name: Uploading package
+      uses: actions/upload-artifact@v3.1.3
+      with:
+        name: CS2Multi1v1-${{ env.BUILD_NUMBER }}
+        path: ${{ env.OUTPUT_PATH }}
