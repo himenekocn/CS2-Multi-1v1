@@ -55,6 +55,6 @@ public class ArenaPlayer
 
     public void PrintToChat(string text)
     {
-        PlayerController.PrintToChat($" {ChatColors.Olive}  CS2Multi1v1 \u2022 {ChatColors.Default}{text}");
+        PlayerController.PrintToChat($" {ChatColors.Olive}  HIME | {ChatColors.Default}{text}");
     }
 }
