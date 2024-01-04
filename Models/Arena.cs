@@ -61,13 +61,13 @@ internal class Arena
             _logger.LogInformation("Switch p1 team..");
             _player1?.PlayerController.SwitchTeam(CsTeam.Terrorist);
 
-            string opponentName = isP2Valid() ? _player2!.PlayerController.PlayerName : "No Opponent";
+            string opponentName = isP2Valid() ? _player2!.PlayerController.PlayerName : "没有对手";
 
-            _player1?.PrintToChat($"Arena:      {ChatColors.Gold}{_rank}");
-            _player1?.PrintToChat($"Round Type: {ChatColors.Gold}{_roundType.Name}");
-            _player1?.PrintToChat($"Opponent:   {ChatColors.Gold}{opponentName}");
+            _player1?.PrintToChat($"竞技场:      {ChatColors.Gold}{_rank}");
+            _player1?.PrintToChat($"对局类型: {ChatColors.Gold}{_roundType.Name}");
+            _player1?.PrintToChat($"对手:   {ChatColors.Gold}{opponentName}");
 
-            _player1!.PlayerController.Clan = $"ARENA {_rank}";
+            _player1!.PlayerController.Clan = $"竞技场 {_rank}";
         }
 
         if (isP2Valid())
@@ -75,13 +75,13 @@ internal class Arena
             _logger.LogInformation("Switch p2 team..");
             _player2?.PlayerController.SwitchTeam(CsTeam.CounterTerrorist);
 
-            string opponentName = isP1Valid() ? _player1!.PlayerController.PlayerName : "No Opponent";
+            string opponentName = isP1Valid() ? _player1!.PlayerController.PlayerName : "没有对手";
 
-            _player2?.PrintToChat($"Arena:      {ChatColors.Gold}{_rank}");
+            _player2?.PrintToChat($"竞技场:      {ChatColors.Gold}{_rank}");
             _player2?.PrintToChat($"Round Type: {ChatColors.Gold}{_roundType.Name}");
             _player2?.PrintToChat($"Opponent:   {ChatColors.Gold}{opponentName}");
 
-            _player2!.PlayerController.Clan = $"ARENA {_rank}";
+            _player2!.PlayerController.Clan = $"竞技场 {_rank}";
         }
 
         LogCurrentInfo();
@@ -153,8 +153,8 @@ internal class Arena
     {
         if (isP1Valid() && isP2Valid())
         {
-            _player1?.PrintToChat($"You: {ChatColors.Green}{_player1Kills}{ChatColors.Default} | {_player2?.PlayerController.PlayerName}: {ChatColors.LightRed}{_player2Kills}");
-            _player2?.PrintToChat($"You: {ChatColors.Green}{_player2Kills}{ChatColors.Default} | {_player1?.PlayerController.PlayerName}: {ChatColors.LightRed}{_player1Kills}");
+            _player1?.PrintToChat($"你: {ChatColors.Green}{_player1Kills}{ChatColors.Default} | {_player2?.PlayerController.PlayerName}: {ChatColors.LightRed}{_player2Kills}");
+            _player2?.PrintToChat($"你: {ChatColors.Green}{_player2Kills}{ChatColors.Default} | {_player1?.PlayerController.PlayerName}: {ChatColors.LightRed}{_player1Kills}");
         }
     }
 
@@ -182,9 +182,9 @@ internal class Arena
     {
         if (isP1Valid() || isP2Valid())
         {
-            _logger.LogInformation($"------ ARENA {_rank} -----");
-            if (isP1Valid()) _logger.LogInformation($"Player1: {_player1.PlayerController.PlayerName}");
-            if (isP2Valid()) _logger.LogInformation($"Player2: {_player2.PlayerController.PlayerName}");
+            _logger.LogInformation($"------ 竞技场 {_rank} -----");
+            if (isP1Valid()) _logger.LogInformation($"玩家1: {_player1.PlayerController.PlayerName}");
+            if (isP2Valid()) _logger.LogInformation($"玩家2: {_player2.PlayerController.PlayerName}");
             _logger.LogInformation($"Round Type: {_roundType.Name}");
         }
     }
@@ -196,23 +196,23 @@ internal class Arena
         {
             if (_player1Kills > _player2Kills)
             {
-                _player1!.PrintToChat($"{ChatColors.Green}You won!");
-                _player2!.PrintToChat($"{ChatColors.Red}You lost!");
+                _player1!.PrintToChat($"{ChatColors.Green}你赢了!");
+                _player2!.PrintToChat($"{ChatColors.Red}你输了!");
             }
             else if (_player2Kills > _player1Kills)
             {
-                _player2!.PrintToChat($"{ChatColors.Green}You won!");
-                _player1!.PrintToChat($"{ChatColors.Red}You lost!");
+                _player2!.PrintToChat($"{ChatColors.Green}你赢了!");
+                _player1!.PrintToChat($"{ChatColors.Red}你输了!");
             }
             else if (_player1HasLastKill)
             {
-                _player1!.PrintToChat($"{ChatColors.Green}You won!");
-                _player2!.PrintToChat($"{ChatColors.Red}You lost!");
+                _player1!.PrintToChat($"{ChatColors.Green}你赢了!");
+                _player2!.PrintToChat($"{ChatColors.Red}你输了!");
             }
             else
             {
-                _player2!.PrintToChat($"{ChatColors.Green}You won!");
-                _player1!.PrintToChat($"{ChatColors.Red}You lost!");
+                _player2!.PrintToChat($"{ChatColors.Green}你赢了!");
+                _player1!.PrintToChat($"{ChatColors.Red}你输了!");
             }
         }
     }
