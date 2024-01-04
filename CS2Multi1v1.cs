@@ -12,10 +12,10 @@ namespace CS2Multi1v1;
 
 public class CS2Multi1v1 : BasePlugin
 {
-    public override string ModuleName => "CS2Multi1v1";
-    public override string ModuleVersion => "beta_1.0.0";
-    public override string ModuleAuthor => "rockCityMath";
-    public override string ModuleDescription => "Supports multiple automatic 1v1 arenas with rank climbing.";
+    public override string ModuleName => "CS2";
+    public override string ModuleVersion => "";
+    public override string ModuleAuthor => "";
+    public override string ModuleDescription => "S";
 
     private bool _aimMapLoaded;
 
