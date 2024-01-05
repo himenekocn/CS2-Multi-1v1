@@ -64,6 +64,22 @@ public class CS2Multi1v1 : BasePlugin
             Console.WriteLine($"[1v1 Debug] OnMapStart");
             Server.ExecuteCommand($"execifexists 1v1.cfg");
         });
+
+        SetupArenasIfNeeded();
+        _waitingArenaPlayers.Clear();
+        foreach(Arena arena in _rankedArenas) arena.AddPlayers(null, null);
+
+        foreach(CCSPlayerController playerController in Utilities.GetPlayers())
+        {
+            if (playerController.IsValid && playerController.Connected == PlayerConnectedState.PlayerConnected)
+            {
+                _waitingArenaPlayers.Enqueue(new ArenaPlayer(playerController));
+            }
+        }
+
+        Server.PrintToChatAll("Requeued");
+
+        _logger.LogInformation($"Map: Reset");
     }
 
     // ----------------------------- SERVER RELATED GAME EVENT HOOKS -------------------------------------//
@@ -306,7 +322,7 @@ public class CS2Multi1v1 : BasePlugin
             }
         }
 
-        Server.PrintToChatAll("Requeued");
+        Server.PrintToChatAll("重置完成");
     }
 
     // Console logs information for all arenas with 1+ players
