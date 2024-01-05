@@ -63,10 +63,8 @@ public class CS2Multi1v1 : BasePlugin
         {
             Console.WriteLine($"[1v1 Debug] OnMapStart");
             Server.ExecuteCommand($"execifexists 1v1.cfg");
+            SetupArenasIfNeeded();
         });
-
-        SetupArenasIfNeeded();
-
         _logger.LogInformation($"Map: Reset");
     }
 
@@ -110,7 +108,7 @@ public class CS2Multi1v1 : BasePlugin
 
     public HookResult OnPlayerConnect(EventPlayerConnect @event, GameEventInfo info)
     {
-        SetupArenasIfNeeded();
+        //SetupArenasIfNeeded();
         return HookResult.Continue;
     }
 
