@@ -37,11 +37,13 @@ public class ArenaPlayer
         {
             CsItem item = (CsItem)roundType.PrimaryWeapon;
             PlayerController.GiveNamedItem(item);
+            PlayerController.ExecuteClientCommand("slot1");
         }
         if (roundType.SecondaryWeapon != null)
         {
             CsItem item = (CsItem)roundType.SecondaryWeapon;
             PlayerController.GiveNamedItem(item);
+            PlayerController.ExecuteClientCommand("slot2");
         }
         if (roundType.Armour)
         {
