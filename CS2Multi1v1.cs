@@ -66,18 +66,6 @@ public class CS2Multi1v1 : BasePlugin
         });
 
         SetupArenasIfNeeded();
-        _waitingArenaPlayers.Clear();
-        foreach(Arena arena in _rankedArenas) arena.AddPlayers(null, null);
-
-        foreach(CCSPlayerController playerController in Utilities.GetPlayers())
-        {
-            if (playerController.IsValid && playerController.Connected == PlayerConnectedState.PlayerConnected)
-            {
-                _waitingArenaPlayers.Enqueue(new ArenaPlayer(playerController));
-            }
-        }
-
-        Server.PrintToChatAll("Requeued");
 
         _logger.LogInformation($"Map: Reset");
     }
