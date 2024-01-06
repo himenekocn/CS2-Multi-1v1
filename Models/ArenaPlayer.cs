@@ -43,9 +43,7 @@ public class ArenaPlayer
             CsItem item = (CsItem)roundType.SecondaryWeapon;
             PlayerController.GiveNamedItem(item);
         }
-        PlayerController.ExecuteClientCommand("slot2");
-        PlayerController.ExecuteClientCommand("slot2");
-        PlayerController.ExecuteClientCommand("slot2");
+
         if (roundType.Armour)
         {
             PlayerController.GiveNamedItem(CsItem.AssaultSuit);
@@ -54,6 +52,19 @@ public class ArenaPlayer
         {
             PlayerController.GiveNamedItem(CsItem.KevlarHelmet);
         }
+
+        Server.NextFrame(() =>
+        {
+            if (roundType.PrimaryWeapon != null)
+            {
+                PlayerController.ExecuteClientCommand("slot3");
+                PlayerController.ExecuteClientCommand("slot1");
+            }else if (roundType.SecondaryWeapon != null)
+            {
+                PlayerController.ExecuteClientCommand("slot3");
+                PlayerController.ExecuteClientCommand("slot2");
+            }
+        });
     }
 
     public void PrintToChat(string text)
