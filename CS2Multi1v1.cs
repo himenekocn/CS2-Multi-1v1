@@ -243,7 +243,7 @@ public class CS2Multi1v1 : BasePlugin
 
     public HookResult OnPlayerDeath(EventPlayerDeath @event, GameEventInfo info)
     {
-        foreach(Arena arena in _rankedArenas) arena.OnPlayerDeath(@event.Userid, @event.attacker);
+        foreach(Arena arena in _rankedArenas) arena.OnPlayerDeath(@event.Userid, @event.Attacker);
         return HookResult.Continue;
     }
 
