@@ -28,7 +28,7 @@ internal class Arena
         _player1Kills = 0;
         _player1HasLastKill = true;
         _player2Kills = 0;
-        _roundType = RoundType.Rifle;
+        _roundType = RoundType.RifleAk;
     }
 
     public void AddPlayers(ArenaPlayer? player1, ArenaPlayer? player2, int rank = -1)
