@@ -163,16 +163,20 @@ internal class Arena
         }
     }
 
-    public void OnPlayerDeath(CCSPlayerController playerController)
+    public void OnPlayerDeath(CCSPlayerController playerController, CCSPlayerController attackerController)
     {
         bool wasPlayer1 = isP1Valid() && _player1!.PlayerController == playerController;
         bool wasPlayer2 = isP2Valid() && _player2!.PlayerController == playerController;
 
+        if(attackerController == playerController || !attackerController.IsValid || attackerController.Connected != PlayerConnectedState.PlayerConnected || !attackerController.Pawn.Value.IsValid || attackerController.IsHLTV;)
+            return;
+        
         if (wasPlayer2)
         {
             _player1Kills += 1;
             _player1HasLastKill = true;
             showPlayersCurrentScore();
+            _player1.Respawn();
         }
 
         if (wasPlayer1)
@@ -180,6 +184,7 @@ internal class Arena
             _player2Kills += 1;
             _player1HasLastKill = false;
             showPlayersCurrentScore();
+            _player2.Respawn();
         }
     }
 
