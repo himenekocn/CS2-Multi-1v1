@@ -93,6 +93,8 @@ public class CS2Multi1v1 : BasePlugin
         _logger.LogInformation($"Player Activated: {playerController.Connected.ToString()}");
 
         if (!playerController.IsValid) return HookResult.Continue;
+        if (playerController.IsHLTV) return HookResult.Continue;
+        if (playerController.IsObserver) return HookResult.Continue;
         if (_rankedArenas.Where(x => x?._player1?.PlayerController == playerController).FirstOrDefault() != null) return HookResult.Continue;
         if (_rankedArenas.Where(x => x?._player2?.PlayerController == playerController).FirstOrDefault() != null) return HookResult.Continue;
 
