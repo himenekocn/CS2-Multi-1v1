@@ -50,7 +50,6 @@ internal class Arena
             RoundType.Deagle,
             RoundType.GalilAR,
             RoundType.Revolver,
-            RoundType.Knife,
             RoundType.Famas,
             RoundType.SG,
             RoundType.AUG
