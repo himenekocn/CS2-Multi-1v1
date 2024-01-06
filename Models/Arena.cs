@@ -224,6 +224,8 @@ internal class Arena
                 _player2!.PrintToChat($"{ChatColors.Green}你赢了!");
                 _player1!.PrintToChat($"{ChatColors.Red}你输了!");
             }
+            _player1.PlayerController.CommitSuicide(true, true);
+            _player2.PlayerController.CommitSuicide(true, true);
         }
     }
 
