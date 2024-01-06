@@ -168,7 +168,7 @@ internal class Arena
         bool wasPlayer1 = isP1Valid() && _player1!.PlayerController == playerController;
         bool wasPlayer2 = isP2Valid() && _player2!.PlayerController == playerController;
 
-        if(attackerController == playerController || !attackerController.IsValid || attackerController.Connected != PlayerConnectedState.PlayerConnected || !attackerController.Pawn.Value.IsValid || attackerController.IsHLTV;)
+        if(attackerController == playerController || !attackerController.IsValid || attackerController.Connected != PlayerConnectedState.PlayerConnected || !attackerController.Pawn.Value.IsValid || attackerController.IsHLTV)
             return;
         
         if (wasPlayer2)
