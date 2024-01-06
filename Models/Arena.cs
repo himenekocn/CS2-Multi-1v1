@@ -258,11 +258,11 @@ internal class Arena
 
     private bool isP1Valid()
     {
-        return _player1 != null && _player1.PlayerController.IsValid && _player1.PlayerController.Connected == PlayerConnectedState.PlayerConnected && _player1.PlayerController.Pawn.Value.IsValid;
+        return _player1 != null && _player1.PlayerController.IsValid && _player1.PlayerController.Connected == PlayerConnectedState.PlayerConnected && _player1.PlayerController.Pawn.Value.IsValid && !_player1.PlayerController.IsHLTV && !_player1.PlayerController.IsObserver;
     }
 
     private bool isP2Valid()
     {
-        return _player2 != null && _player2.PlayerController.IsValid && _player2.PlayerController.Connected == PlayerConnectedState.PlayerConnected && _player2.PlayerController.Pawn.Value.IsValid;
+        return _player2 != null && _player2.PlayerController.IsValid && _player2.PlayerController.Connected == PlayerConnectedState.PlayerConnected && _player2.PlayerController.Pawn.Value.IsValid && !_player1.PlayerController.IsHLTV && !_player1.PlayerController.IsObserver;
     }
 }
