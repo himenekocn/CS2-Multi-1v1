@@ -176,7 +176,7 @@ internal class Arena
             _player1Kills += 1;
             _player1HasLastKill = true;
             showPlayersCurrentScore();
-            _player1.Respawn();
+            _player1.PlayerController.Respawn();
         }
 
         if (wasPlayer1)
@@ -184,7 +184,7 @@ internal class Arena
             _player2Kills += 1;
             _player1HasLastKill = false;
             showPlayersCurrentScore();
-            _player2.Respawn();
+            _player2.PlayerController.Respawn();
         }
     }
 
