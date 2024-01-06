@@ -42,16 +42,22 @@ internal class Arena
 
         // TODO: Check player prefs for acceptable roundtypes?
         List<RoundType> roundTypes = new List<RoundType>(){
-            RoundType.Rifle,
-            RoundType.Smg,
+            RoundType.RifleAk,
+            RoundType.RifleM4,
+            RoundType.Pistol,
             RoundType.Scout,
             RoundType.Awp,
-            RoundType.Pistol,
-            RoundType.Deagle
+            RoundType.Deagle,
+            RoundType.GalilAR,
+            RoundType.Revolver,
+            RoundType.Knife,
+            RoundType.Famas,
+            RoundType.SG,
+            RoundType.AUG
         };
 
         Random rng = new Random();
-        int roundTypeIndex = rng.Next(0, 5);
+        int roundTypeIndex = rng.Next(0, 11);
 
         _roundType = roundTypes[roundTypeIndex];
 
@@ -65,7 +71,7 @@ internal class Arena
 
             _player1?.PrintToChat($"竞技场:      {ChatColors.Gold}{_rank}");
             _player1?.PrintToChat($"对局类型: {ChatColors.Gold}{_roundType.Name}");
-            _player1?.PrintToChat($"对手:   {ChatColors.Gold}{opponentName}");
+            _player1?.PrintToChat($"对局对手:   {ChatColors.Gold}{opponentName}");
 
             _player1!.PlayerController.Clan = $"竞技场 {_rank}";
         }
@@ -78,8 +84,8 @@ internal class Arena
             string opponentName = isP1Valid() ? _player1!.PlayerController.PlayerName : "没有对手";
 
             _player2?.PrintToChat($"竞技场:      {ChatColors.Gold}{_rank}");
-            _player2?.PrintToChat($"Round Type: {ChatColors.Gold}{_roundType.Name}");
-            _player2?.PrintToChat($"Opponent:   {ChatColors.Gold}{opponentName}");
+            _player2?.PrintToChat($"对局类型: {ChatColors.Gold}{_roundType.Name}");
+            _player2?.PrintToChat($"对局对手:   {ChatColors.Gold}{opponentName}");
 
             _player2!.PlayerController.Clan = $"竞技场 {_rank}";
         }
@@ -258,11 +264,11 @@ internal class Arena
 
     private bool isP1Valid()
     {
-        return _player1 != null && _player1.PlayerController.IsValid && _player1.PlayerController.Connected == PlayerConnectedState.PlayerConnected && _player1.PlayerController.Pawn.Value.IsValid && !_player1.PlayerController.IsHLTV && !_player1.PlayerController.IsObserver;
+        return _player1 != null && _player1.PlayerController.IsValid && _player1.PlayerController.Connected == PlayerConnectedState.PlayerConnected && _player1.PlayerController.Pawn.Value.IsValid && !_player1.PlayerController.IsHLTV;
     }
 
     private bool isP2Valid()
     {
-        return _player2 != null && _player2.PlayerController.IsValid && _player2.PlayerController.Connected == PlayerConnectedState.PlayerConnected && _player2.PlayerController.Pawn.Value.IsValid && !_player1.PlayerController.IsHLTV && !_player1.PlayerController.IsObserver;
+        return _player2 != null && _player2.PlayerController.IsValid && _player2.PlayerController.Connected == PlayerConnectedState.PlayerConnected && _player2.PlayerController.Pawn.Value.IsValid && !_player1.PlayerController.IsHLTV;
     }
 }

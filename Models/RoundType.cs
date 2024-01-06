@@ -25,10 +25,27 @@ public struct RoundType
         Helmet = helmet;
     }
 
-    public static readonly RoundType Rifle = new RoundType("AK47", CsItem.AK47, CsItem.USPS);
-    public static readonly RoundType Pistol = new RoundType("Pistol", null, CsItem.USPS);
-    public static readonly RoundType Scout = new RoundType("Scout", CsItem.Scout, CsItem.USPS);
-    public static readonly RoundType Awp = new RoundType("AWP", CsItem.AWP, CsItem.Deagle);
-    public static readonly RoundType Deagle = new RoundType("Deagle", null, CsItem.Deagle);
-    public static readonly RoundType Smg = new RoundType("SMG", CsItem.GalilAR, CsItem.P250);
+    public static readonly RoundType RifleAk = new RoundType("AK47", CsItem.AK47, CsItem.Glock, true, false, true, true);
+
+    public static readonly RoundType RifleM4 = new RoundType("M4A4", CsItem.M4A4, CsItem.USPS, true, false, true, true);
+
+    public static readonly RoundType Pistol = new RoundType("USP", null, CsItem.USPS, false, true, true, false);
+
+    public static readonly RoundType Scout = new RoundType("鸟狙", CsItem.Scout, CsItem.USPS, true, false, true, true);
+
+    public static readonly RoundType Awp = new RoundType("大狙", CsItem.AWP, CsItem.Deagle, true, false, true, true);
+
+    public static readonly RoundType Deagle = new RoundType("沙鹰", null, CsItem.Deagle, false, true, true, true);
+
+    public static readonly RoundType GalilAR = new RoundType("咖喱", CsItem.GalilAR, CsItem.P250, true, false, true, true);
+
+    public static readonly RoundType Revolver = new RoundType("R8", null, CsItem.Revolver, false, true, true, true);
+
+    public static readonly RoundType Knife = new RoundType("刀", null, null, false, false, true, true);
+
+    public static readonly RoundType Famas = new RoundType("法玛斯", CsItem.Famas, CsItem.Elite, true, false, true, true);
+
+    public static readonly RoundType SG = new RoundType("553", CsItem.SG556, CsItem.Tec9, true, false, true, true);
+
+    public static readonly RoundType AUG = new RoundType("AUG", CsItem.AUG, CsItem.CZ, true, false, true, true);
 }

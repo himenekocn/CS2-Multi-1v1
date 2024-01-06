@@ -12,10 +12,10 @@ namespace CS2Multi1v1;
 
 public class CS2Multi1v1 : BasePlugin
 {
-    public override string ModuleName => "CS2";
-    public override string ModuleVersion => "";
+    public override string ModuleName => "CS2 M1V1";
+    public override string ModuleVersion => "HIME V1";
     public override string ModuleAuthor => "";
-    public override string ModuleDescription => "S";
+    public override string ModuleDescription => "";
 
     private bool _aimMapLoaded;
 
@@ -33,7 +33,7 @@ public class CS2Multi1v1 : BasePlugin
 
     public override void Load(bool hotReload)
     {
-        _logger.LogInformation("Loaded CS2Multi1v1!");
+        _logger.LogInformation("Loaded 1v1!");
 
         RegisterEventHandler<EventGameNewmap>(OnGameNewmap);
         RegisterEventHandler<EventGameStart>(OnGameStart);
@@ -64,7 +64,6 @@ public class CS2Multi1v1 : BasePlugin
         _rankedArenas.Clear();
         Server.NextFrame(() =>
         {
-            Console.WriteLine($"[1v1 Debug] OnMapStart");
             Server.ExecuteCommand($"execifexists 1v1.cfg");
         });
         _logger.LogInformation($"Map: Reset");
@@ -94,7 +93,6 @@ public class CS2Multi1v1 : BasePlugin
 
         if (!playerController.IsValid) return HookResult.Continue;
         if (playerController.IsHLTV) return HookResult.Continue;
-        if (playerController.IsObserver) return HookResult.Continue;
         if (_rankedArenas.Where(x => x?._player1?.PlayerController == playerController).FirstOrDefault() != null) return HookResult.Continue;
         if (_rankedArenas.Where(x => x?._player2?.PlayerController == playerController).FirstOrDefault() != null) return HookResult.Continue;
 
@@ -302,15 +300,18 @@ public class CS2Multi1v1 : BasePlugin
     {
         SetupArenasIfNeeded();
         _waitingArenaPlayers.Clear();
-        foreach(Arena arena in _rankedArenas) arena.AddPlayers(null, null);
-
-        foreach(CCSPlayerController playerController in Utilities.GetPlayers())
+        Server.NextFrame(() =>
         {
-            if (playerController.IsValid && playerController.Connected == PlayerConnectedState.PlayerConnected)
+            foreach(Arena arena in _rankedArenas) arena.AddPlayers(null, null);
+
+            foreach(CCSPlayerController playerController in Utilities.GetPlayers())
             {
-                _waitingArenaPlayers.Enqueue(new ArenaPlayer(playerController));
+                if (playerController.IsValid && playerController.Connected == PlayerConnectedState.PlayerConnected && !playerController.IsHLTV)
+                {
+                    _waitingArenaPlayers.Enqueue(new ArenaPlayer(playerController));
+                }
             }
-        }
+        });
 
         Server.PrintToChatAll("重置完成");
     }
@@ -359,7 +360,7 @@ public class CS2Multi1v1 : BasePlugin
     public void OnEndRound(CCSPlayerController? player, CommandInfo commandInfo)
     {
         var gameRules = Utilities.FindAllEntitiesByDesignerName<CCSGameRulesProxy>("cs_gamerules").First().GameRules!;
-        gameRules.TerminateRound(3.0f, RoundEndReason.CTsWin);
+        gameRules.TerminateRound(2.0f, RoundEndReason.CTsWin);
     }
 
     // ---------------------------------- UTIL ---------------------------------------//
