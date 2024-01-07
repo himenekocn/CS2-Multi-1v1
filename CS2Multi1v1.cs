@@ -93,6 +93,13 @@ public class CS2Multi1v1 : BasePlugin
 
         if (!playerController.IsValid) return HookResult.Continue;
         if (playerController.IsHLTV) return HookResult.Continue;
+
+        PrintToChatCustom(playerController, "----------------- CS2 多人 1v1 ----------");
+        PrintToChatCustom(playerController, "1. 你将从最低阶级竞技场开始.");
+        PrintToChatCustom(playerController, "2. 谁获得最多的击杀，谁就是本场比赛的最强者.");
+        PrintToChatCustom(playerController, "3. 如果打成平手，谁最后一击获胜.");
+        PrintToChatCustom(playerController, "--- 对局类型完全随机.");
+        
         if (_rankedArenas.Where(x => x?._player1?.PlayerController == playerController).FirstOrDefault() != null) return HookResult.Continue;
         if (_rankedArenas.Where(x => x?._player2?.PlayerController == playerController).FirstOrDefault() != null) return HookResult.Continue;
 
