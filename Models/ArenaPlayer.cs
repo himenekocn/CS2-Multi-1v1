@@ -58,11 +58,9 @@ public class ArenaPlayer
         {
             if (roundType.PrimaryWeapon != null)
             {
-                PlayerController.ExecuteClientCommand("slot3");
                 PlayerController.ExecuteClientCommand("slot1");
             }else if (roundType.SecondaryWeapon != null)
             {
-                PlayerController.ExecuteClientCommand("slot3");
                 PlayerController.ExecuteClientCommand("slot2");
             }
         });
