@@ -13,7 +13,7 @@ namespace CS2Multi1v1;
 public class CS2Multi1v1 : BasePlugin
 {
     public override string ModuleName => "CS2 M1V1";
-    public override string ModuleVersion => "HIME V1";
+    public override string ModuleVersion => "HIME V1.1";
     public override string ModuleAuthor => "";
     public override string ModuleDescription => "";
 
@@ -89,11 +89,12 @@ public class CS2Multi1v1 : BasePlugin
     public HookResult OnPlayerActivate(EventPlayerActivate @event, GameEventInfo info)
     {
         CCSPlayerController playerController = @event.Userid;
-        _logger.LogInformation($"Player Activated: {playerController.Connected.ToString()}");
-
+        
+        if (playerController == null) return HookResult.Continue;
         if (!playerController.IsValid) return HookResult.Continue;
         if (playerController.IsHLTV) return HookResult.Continue;
-
+        _logger.LogInformation($"Player Activated: {playerController.Connected.ToString()}");
+        
         PrintToChatCustom(playerController, "----------------- CS2 多人 1v1 ----------");
         PrintToChatCustom(playerController, "1. 你将从最低阶级竞技场开始.");
         PrintToChatCustom(playerController, "2. 谁获得最多的击杀，谁就是本场比赛的最强者.");
